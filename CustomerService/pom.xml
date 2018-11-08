@@ -6,17 +6,18 @@
     <groupId>com.tibco.bw</groupId>
     <artifactId>CustomerService.parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>..\CustomerService.parent</relativePath>
+    <relativePath>../CustomerService.parent</relativePath>
   </parent>
   <artifactId>CustomerService</artifactId>
   <packaging>bwear</packaging>
   <properties>
+    <pcf.property.file>pcfdev.properties</pcf.property.file>
     <skipTests>false</skipTests>
-    <project.type>Docker</project.type>
     <bw.Home>/bwce/2.4</bw.Home>
+    <project.type>Docker</project.type>
     <k8s.property.file>k8s-dev.properties</k8s.property.file>
-    <docker.property.file>docker-dev.properties</docker.property.file>
     <failIfNoTests>false</failIfNoTests>
+    <docker.property.file>docker-dev.properties</docker.property.file>
     <tibco.Home>/home/tibco/bwce</tibco.Home>
   </properties>
   <build>
@@ -24,7 +25,7 @@
       <plugin>
         <groupId>com.tibco.plugins</groupId>
         <artifactId>bw6-maven-plugin</artifactId>
-        <version>2.0.0</version>
+        <version>1.3.0</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
@@ -43,6 +44,7 @@
           <files>
             <file>${docker.property.file}</file>
             <file>${k8s.property.file}</file>
+            <file>${pcf.property.file}</file>
           </files>
         </configuration>
       </plugin>
@@ -85,6 +87,28 @@
         <version>3.5.41</version>
         <configuration>
           <skip>false</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.cloudfoundry</groupId>
+        <artifactId>cf-maven-plugin</artifactId>
+        <version>1.1.3</version>
+        <configuration>
+          <server>${bwpcf.server}</server>
+          <target>${bwpcf.target}</target>
+          <trustSelfSignedCerts>${bwpcf.trustSelfSignedCerts}</trustSelfSignedCerts>
+          <org>${bwpcf.org}</org>
+          <space>${bwpcf.space}</space>
+          <appname>${bwpcf.appName}</appname>
+          <url>${bwpcf.url}</url>
+          <instances>${bwpcf.instances}</instances>
+          <skip>false</skip>
+          <memory>${bwpcf.memory}</memory>
+          <buildpack>${bwpcf.buildpack}</buildpack>
+          <env>
+            <APP_CONFIG_PROFILE>${bwpcf.env.0}</APP_CONFIG_PROFILE>
+            <BW_LOGLEVEL>${bwpcf.env.1}</BW_LOGLEVEL>
+          </env>
         </configuration>
       </plugin>
     </plugins>
