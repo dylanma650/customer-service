@@ -702,7 +702,7 @@
                                     inputVariable="GetCustomerDetails-input"
                                     name="GetCustomerDetails"
                                     outputVariable="GetCustomerDetails"
-                                    tibex:xpdlId="f619ac79-0440-458b-b986-0e4c21b4a9ef"
+                                    tibex:xpdlId="a2acc7d1-1afd-4d01-982d-bfedbcabd311"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:sources>
                                     <bpws:source linkName="CallProcessTogetOut"/>
